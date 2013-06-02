@@ -1,20 +1,20 @@
 # deadify
 
-FIXME: A utility tool to identify unused css selectors and class/id attributes.
+A utility tool to identify unused css selectors and class/id attributes.
 
 ## Installation
 
-Download from http://example.com/FIXME.
+...
 
 ## Usage
 
-FIXME: explanation
+...
 
     $ java -jar deadify-0.1.0-standalone.jar [args]
 
 ## Options
 
-FIXME: listing of options this app accepts.
+...
 
 ## Examples
 
@@ -24,12 +24,8 @@ FIXME: listing of options this app accepts.
 
 ...
 
-### Any Other Sections
-### That You Think
-### Might be Useful
-
 ## License
 
-Copyright © 2013 FIXME
+Copyright © 2013 Shabananana
 
 Distributed under the Eclipse Public License, the same as Clojure.
