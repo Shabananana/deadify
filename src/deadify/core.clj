@@ -8,23 +8,24 @@
 
 (def not-nil? (complement nil?))
 
-(defn parse-css [x coll]
-  ((if (not-nil? (re-find #"[(\w+)?(\s*>\s*)?(#\w+)?\s*(\.\w+)?\s*]" x))
-    (conj coll x)
-    (println x)))
+(defn parse-css [x]
+  ((let [selector (re-find #"[(\w+)?(\s*>\s*)?(#\w+)?\s*(\.\w+)?\s*]" x)]
+    (if (not-nil? selector)
+      (println (apply str selector))))))
 
 (defn read-file-by-line [x]
-  (if (.isFile? (file-seq (File. x)))
     (with-open [rdr (java.io.BufferedReader. (java.io.FileReader. x))]
-    (let [seq (line-seq rdr)]
-      (count seq)
-      (parse-css x nil)))))
+    (let [line (line-seq rdr)]
+      (count line)
+      (parse-css line))))
 
 (defn get-files [x]
   (file-seq (File. x))
   (doseq [file (file-seq (File. x))]
     (println (clojure.string/replace file #"[\\]" #(str %1 %1)))
-    (read-file-by-line (clojure.string/replace file #"[\\]" #(str %1 %1))))
+    (if (.isFile file)
+      (read-file-by-line (clojure.string/replace file #"[\\]" #(str %1 %1)))
+      (println "This is a directory."))))
 
 (defn -main
   "I don't do a whole lot ... yet."
